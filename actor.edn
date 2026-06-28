@@ -1,0 +1,14 @@
+;; 系図 keizu — organism manifest for the shared kototama self-publish runtime
+;; (kototama/lib/actor/publish.bb). Government power-relations graph → its own IPNS.
+{:did        "did:web:etzhayyim.github.io:com-etzhayyim-keizu"
+ :handle     "keizu.etzhayyim.com"
+ :ipns-key   "keizu-actor"
+ :graph-type "com.etzhayyim.keizu.graph"
+ :published  "2026-06-28"
+ :regen [["sh" "-c" "cd methods && bb -e '(load-file \"edn.cljc\")(load-file \"weave.cljc\")(load-file \"analyze.cljc\")(require (quote [keizu.methods.analyze :as a]))(a/-main)'"]]
+ :bundle [["methods/out/intel-report.md"          "intel-report.md"]
+          ["methods/out/relation-graph.kotoba.edn" "relation-graph.kotoba.edn"]
+          ["methods/out/kanae-render.json"        "kanae-render.json"]]
+ ;; no :posts-file — keizu narrates committee ties / money shares (G2 non-adjudicating,
+ ;; G5 mirror), never advice; the G-no-advice membrane is N/A and is skipped.
+ }
