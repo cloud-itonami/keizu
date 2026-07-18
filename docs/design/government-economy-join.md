@@ -11,7 +11,7 @@ references, so government money flows cannot reach the corporate supply-chain gr
 
 ## keizu-side change (step 1–3 of ADR-0005, ungated/offline)
 
-1. **Schema** (`00-contracts/schemas/government-relations-ontology.kotoba.edn` +
+1. **Schema** (`schema/government-relations-ontology.kotoba.edn` +
    `lex/moneyFlowObservation.edn`): add OPTIONAL
    - `:money/payee-corp` — resolved `org.corp.*` id (listed entities ONLY);
    - `:money/payee-corp-confidence` ∈ `:exact | :probable | :unresolved`;

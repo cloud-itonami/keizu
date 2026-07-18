@@ -6,8 +6,7 @@
             #?(:clj [clojure.java.io :as io])
             [keizu.methods._edn :as edn]))
 
-(def ^:private lex-dir
-  #?(:clj (io/file (-> *file* io/file .getParentFile .getParentFile) "lex")))
+(def ^:private lex-dir #?(:clj (io/file "lex")))
 
 (def ^:private lexes
   ["relationEdge" "committeeComposition" "moneyFlowObservation" "networkPost"])

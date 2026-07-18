@@ -6,9 +6,10 @@
   (:require [clojure.test :refer [deftest is run-tests]]
             [keizu.methods.weave :as w]
             [keizu.methods.export :as x]
-            #?(:clj [keizu.methods.edn :as e])))
+            #?(:clj [keizu.methods.edn :as e])
+            #?(:clj [cheshire.core])))
 
-(def seed-path "20-actors/keizu/data/seed-relation-graph.kotoba.edn")
+(def seed-path "data/seed-relation-graph.kotoba.edn")
 
 #?(:clj (defn- g [] (w/weave (e/load-edn seed-path))))
 

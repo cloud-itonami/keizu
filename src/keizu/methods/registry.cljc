@@ -2,7 +2,7 @@
   "registry.cljc — 系図 (keizu) public-source registry access. ADR-2606066000.
   1:1 Clojure port of `methods/registry.py` (same house style as weave/analyze).
 
-  Loads registry/sources.seed.json and exposes the source catalog to the ingest/bridge paths:
+  Loads canonical registry/sources.seed.edn and exposes the source catalog:
     - get-source / source-ids
     - sourcing-for(source-id) — G11 honesty DRIVEN BY the registry: a record from a VERIFIED source
       may be :authoritative; from an unverified-seed source it stays :representative.
@@ -14,23 +14,21 @@
   throw ex-info (mirroring Python's KeyError / ValueError); pure fns; file I/O at the #?(:clj)
   edge (the JSON read)."
   (:require [keizu.methods.weave :as w]
-            #?(:clj [cheshire.core :as json])))
+            #?(:clj [clojure.edn :as edn])))
 
 ;; Re-export SOURCE-DENY (Python `from weave import SOURCE_DENY` → registry's __all__).
 (def SOURCE-DENY w/SOURCE-DENY)
 
 #?(:clj
    (def ^:private reg-path
-     "registry/sources.seed.json relative to the actor root (parents[1] of methods/)."
-     (-> *file* clojure.java.io/file .getParentFile .getParentFile
-         (clojure.java.io/file "registry" "sources.seed.json")
-         str)))
+     "Canonical public-source registry."
+     "registry/sources.seed.edn"))
 
 #?(:clj
    (defn load-registry
-     "Read + JSON-parse registry/sources.seed.json (string keys, like Python json.loads)."
+     "Read canonical EDN registry (string keys retained for wire-compatible records)."
      ([] (load-registry reg-path))
-     ([path] (json/parse-string (slurp path) false))))
+     ([path] (edn/read-string (slurp path)))))
 
 #?(:clj
    (defn source-ids

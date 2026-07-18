@@ -8,7 +8,7 @@
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as e])))
 
-(def seed-path "20-actors/keizu/data/seed-relation-graph.kotoba.edn")
+(def seed-path "data/seed-relation-graph.kotoba.edn")
 
 #?(:clj (defn- g [] (w/weave (e/load-edn seed-path))))
 

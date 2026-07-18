@@ -537,10 +537,9 @@
    (defn -main
      "CLI: weave the seed → concentration → print canonical JSON (for byte-parity cmp)."
      [& argv]
-     (let [here (-> *file* clojure.java.io/file .getParentFile .getParentFile)
-           seed (if (and (seq argv) (not (str/starts-with? (first argv) "--")))
+     (let [seed (if (and (seq argv) (not (str/starts-with? (first argv) "--")))
                   (first argv)
-                  (str (clojure.java.io/file here "data" "seed-relation-graph.kotoba.edn")))
+                  "data/seed-relation-graph.kotoba.edn")
            g (weave (kedn/load-edn seed))
            c (concentration g)]
        (println (to-json c))

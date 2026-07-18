@@ -3,7 +3,7 @@
 
    Each test file builds a list of [name fn] and calls run name cases. A case passes if it
    returns without raising; failures print and the process exits non-zero. Mirrors the
-   ake/noroshi convention so `./run_tests.sh` can aggregate every suite."
+   ake/noroshi convention so `run_tests.clj` can aggregate every suite."
   (:require [clojure.stacktrace :as st]))
 
 (defn run

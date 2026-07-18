@@ -9,7 +9,7 @@
             #?(:clj [keizu.methods.edn :as e])
             [keizu.methods.analyze :as a]))
 
-(def seed-path "20-actors/keizu/data/seed-relation-graph.kotoba.edn")
+(def seed-path "data/seed-relation-graph.kotoba.edn")
 
 ;; the empty seed (_EMPTY_SEED) — exercises the "(none in seed)" fallbacks of report-md.
 (def empty-seed

@@ -131,8 +131,7 @@
      [& argv]
      (let [seed (if (and (seq argv) (not (str/starts-with? (first argv) "--")))
                   (first argv)
-                  (let [here (-> *file* clojure.java.io/file .getParentFile .getParentFile)]
-                    (str (clojure.java.io/file here "data" "seed-relation-graph.kotoba.edn"))))
+                  "data/seed-relation-graph.kotoba.edn")
            g (w/weave (kedn/load-edn seed))
            kf (to-kanae-flows g)]
        (println (str "# keizu → kanae export — " (count (get kf "flows"))

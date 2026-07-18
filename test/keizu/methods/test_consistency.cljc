@@ -4,21 +4,11 @@
   (:require [clojure.test :refer [deftest is run-tests]]
             [clojure.string :as str]
             #?(:clj [clojure.java.io :as io])
-            #?(:clj [cheshire.core :as json])
+            #?(:clj [clojure.edn :as cedn])
             [keizu.methods._edn :as edn]))
 
-;; ROOT/20-actors via *file* (…/20-actors/keizu/methods/test_consistency.cljc → up 3)
-(def ^:private actors-dir
-  #?(:clj (-> *file* io/file .getParentFile .getParentFile .getParentFile)))
-
-(def ^:private root-dir
-  #?(:clj (-> actors-dir .getParentFile)))
-
 (def ^:private ont-path
-  #?(:clj (io/file root-dir "00-contracts" "schemas" "government-relations-ontology.kotoba.edn")))
-
-(def ^:private seedreg-path
-  #?(:clj (io/file root-dir "00-contracts" "schemas" "actor-profile-seed.kotoba.edn")))
+  #?(:clj (io/file "schema" "government-relations-ontology.kotoba.edn")))
 
 (def ^:private lexes
   ["relationEdge" "committeeComposition" "moneyFlowObservation" "networkPost"])
@@ -27,7 +17,7 @@
   ["ingest" "committee_graph" "money_graph" "relation_weave" "social_post"])
 
 (defn- manifest []
-  #?(:clj (json/parse-string (slurp (io/file actors-dir "keizu" "manifest.jsonld")))))
+  #?(:clj (:actor/manifest (cedn/read-string (slurp "manifest.edn")))))
 
 ;; ── Tests ──────────────────────────────────────────────────────────────────────
 (deftest test-manifest-tier-b
@@ -44,7 +34,7 @@
                            (get m "lexiconNamespaces")))]
     (is (= (set lexes) declared))
     (doseq [name lexes]
-      (is (.exists (io/file actors-dir "keizu" "lex" (str name ".edn")))
+      (is (.exists (io/file "lex" (str name ".edn")))
           name))))
 
 (deftest test-manifest-cells-match-tree
@@ -52,24 +42,18 @@
         names (set (map #(get % "name") (get m "cells")))]
     (is (= (set cells) names))
     (doseq [c cells]
-      (is (.exists #?(:clj (io/file actors-dir "keizu" "cells" c "cell.py"))))
-      (is (.exists #?(:clj (io/file actors-dir "keizu" "cells" c "state_machine.py")))))))
+      (is (.exists #?(:clj (io/file "src" "keizu" "cells" c "state_machine.cljc")))))))
 
 (deftest test-lex-ids-match-namespaces
   (let [m (manifest)
         declared (set (get m "lexiconNamespaces"))
         got (set (for [n lexes]
                    (get (edn/load-edn
-                          #?(:clj (io/file actors-dir "keizu" "lex" (str n ".edn"))))
+                          #?(:clj (io/file "lex" (str n ".edn"))))
                         ":id")))]
     (is (= got declared))))
 
-(deftest test-registry-soft
-  ;; SOFT — passes whether or not the shared seed has been updated yet (ake convention).
-  (when #?(:clj (.exists seedreg-path))
-    (let [txt #?(:clj (slurp seedreg-path))]
-      (when (str/includes? txt "actor:keizu")
-        (is (or (str/includes? txt "\"keizu\"")
-                (str/includes? txt "actor:keizu")))))))
+(deftest test-registry-owned-locally
+  (is (.exists #?(:clj (io/file "registry" "sources.seed.edn")))))
 
 #?(:clj (defn -main [& _] (run-tests 'keizu.methods.test-consistency)))

@@ -14,7 +14,7 @@
 ;; bb runs with cwd at the worktree root; the seed lives at a fixed actor path.
 
 (def seed-path
-  "20-actors/keizu/data/seed-relation-graph.kotoba.edn")
+  "data/seed-relation-graph.kotoba.edn")
 
 ;; ── primitive / atom-level parsing (mirror of Python _atom) ───────────────────
 

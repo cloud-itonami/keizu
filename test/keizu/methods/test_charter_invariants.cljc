@@ -16,18 +16,11 @@
             #?(:clj [keizu.methods.edn :as kedn])
             [keizu.methods.weave :as w]))
 
-;; ── paths (all *file*-relative, matching the Python pathlib.parents arithmetic) ──
-;; *file* = …/20-actors/keizu/methods/test_charter_invariants.cljc
-;; methods → keizu → 20-actors → ROOT (parents[3] in Python = ROOT)
 #?(:clj
    (do
-     (def ^:private here (.getParentFile (java.io.File. ^String *file*)))            ;; methods/
-     (def ^:private keizu-dir (.getParentFile here))                                 ;; keizu/
-     (def ^:private actors-dir (.getParentFile keizu-dir))                           ;; 20-actors/
-     (def ^:private root (.getParentFile actors-dir))                                ;; ROOT
-     (def ^:private ONT (java.io.File. root "00-contracts/schemas/government-relations-ontology.kotoba.edn"))
-     (def ^:private LEXDIR (java.io.File. keizu-dir "lex"))
-     (def ^:private SEED (java.io.File. (java.io.File. keizu-dir "data") "seed-relation-graph.kotoba.edn"))))
+     (def ^:private ONT (java.io.File. "schema/government-relations-ontology.kotoba.edn"))
+     (def ^:private LEXDIR (java.io.File. "lex"))
+     (def ^:private SEED (java.io.File. "data/seed-relation-graph.kotoba.edn"))))
 
 (def ^:private PRIVATE-TOKENS
   ["private-person" "individual" "citizen" "person" "natural-person"])

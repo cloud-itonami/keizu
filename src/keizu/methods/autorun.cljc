@@ -25,13 +25,9 @@
             [keizu.methods.kotoba :as k]))
 
 #?(:clj
-   (def ^:private here (.getParentFile (java.io.File. ^String *file*))))
+   (def SEED (java.io.File. "data/seed-relation-graph.kotoba.edn")))
 #?(:clj
-   (def ^:private data (java.io.File. (.getParentFile here) "data")))
-#?(:clj
-   (def SEED (java.io.File. data "seed-relation-graph.kotoba.edn")))
-#?(:clj
-   (def LOG (java.io.File. data "keizu.datoms.kotoba.edn")))
+   (def LOG (java.io.File. "data/keizu.datoms.kotoba.edn")))
 
 (def BASE-AS-OF 20260609)
 

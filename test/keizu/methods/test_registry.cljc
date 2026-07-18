@@ -2,7 +2,7 @@
   "test_registry.cljc — 系図 (keizu) source-registry access + runtime deny guard. ADR-2606066000.
   1:1 Clojure port of `methods/test_registry.py` (clojure.test). Every Python assertion ported,
   incl. the source-deny / no-doxxing gate tests. Registry I/O is at the #?(:clj) edge, so the
-  whole suite is :clj-only (it reads registry/sources.seed.json)."
+  whole suite is :clj-only (it reads registry/sources.seed.edn)."
   (:require [clojure.test :refer [deftest is run-tests]]
             #?(:clj [keizu.methods.registry :as r])))
 

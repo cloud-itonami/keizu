@@ -286,13 +286,12 @@
      out/kanae-render.json. Byte-parity target = intel-report.md (matches analyze.py)."
      [& argv]
      (let [argv (vec argv)
-           methods-dir (delay (-> *file* clojure.java.io/file .getParentFile))
            seed (if (and (seq argv) (not (str/starts-with? (first argv) "--")))
                   (clojure.java.io/file (first argv))
-                  (clojure.java.io/file @methods-dir ".." "data" "seed-relation-graph.kotoba.edn"))
+                  (clojure.java.io/file "data" "seed-relation-graph.kotoba.edn"))
            outdir (if (some #{"--out"} argv)
                     (clojure.java.io/file (nth argv (inc (.indexOf argv "--out"))))
-                    (clojure.java.io/file @methods-dir "out"))
+                    (clojure.java.io/file "out"))
            res (run (kedn/load-edn seed))
            c (get res "concentration")
            g (get res "graph")]

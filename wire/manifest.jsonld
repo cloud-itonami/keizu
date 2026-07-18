@@ -24,7 +24,7 @@
   "tier": "Tier-B",
   "status": "R0-design-only",
   "primaryLexicon": "com.etzhayyim.keizu.relationEdge",
-  "primarySchema": "00-contracts/schemas/government-relations-ontology.kotoba.edn",
+  "primarySchema": "schema/government-relations-ontology.kotoba.edn",
   "substrate": {
     "state": "kotoba Datom log (ADR-2605312345)",
     "inference": "Murakumo-only (ADR-2605215000)",

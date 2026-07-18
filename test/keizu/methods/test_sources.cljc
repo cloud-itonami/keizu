@@ -2,7 +2,7 @@
   "test_sources.py — 系図 (keizu) public-source registry well-formedness + deny-list. ADR-2606066000.
   1:1 Clojure port (stdlib _t harness → clojure.test).
 
-  Validates registry/sources.seed.json: required fields, valid kinds + mapsTo targets, the
+  Validates registry/sources.seed.edn: required fields, valid kinds + mapsTo targets, the
   unverified-seed safety state (G8), and the no-commercial-gov-intel deny-list (Charter Rider §2(e),
   N5) — the structural gate keizu inherits from danjo G8."
   (:require [clojure.test :refer [deftest is run-tests]]
@@ -13,9 +13,8 @@
 
 (def ^:private DENY w/SOURCE-DENY)   ;; single source of truth (also enforced at runtime)
 
-;; …/20-actors/keizu/methods/test_sources.cljc → up 2 = keizu → registry/sources.seed.json
-(def ^:private reg-file
-  #?(:clj (io/file (-> *file* io/file .getParentFile .getParentFile) "registry" "sources.seed.json")))
+;; …/20-actors/keizu/methods/test_sources.cljc → up 2 = keizu → registry/sources.seed.edn
+(def ^:private reg-file #?(:clj (io/file "registry" "sources.seed.edn")))
 
 (def ^:private SOURCE-KINDS
   #{"procurement" "budget" "political-finance" "committee-roster" "statements"})
