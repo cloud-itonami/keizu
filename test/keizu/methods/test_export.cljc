@@ -7,7 +7,7 @@
             [keizu.methods.weave :as w]
             [keizu.methods.export :as x]
             #?(:clj [keizu.methods.edn :as e])
-            #?(:clj [cheshire.core])))
+            [json.compat]))
 
 (def seed-path "data/seed-relation-graph.kotoba.edn")
 
@@ -45,7 +45,7 @@
    (deftest test-render-payload-is-json-serializable
      (let [c (w/concentration (g))
            s (x/render-json c)
-           obj (cheshire.core/parse-string s false)]
+           obj (json.compat/parse-string s false)]
        (is (= "keizu" (get obj "actor")))
        (is (true? (get obj "isMirror")))
        (is (true? (get obj "nonAdjudicating")))
@@ -55,7 +55,7 @@
 #?(:clj
    (deftest test-render-payload-empty-graph-safe
      (let [s (x/render-json (w/concentration (w/weave {})))
-           obj (cheshire.core/parse-string s false)]
+           obj (json.compat/parse-string s false)]
        (is (= 0 (get-in obj ["counts" "money_count"])))
        (is (= [] (get obj "money_by_payee")))
        (is (= 0 (get-in obj ["statement_index" "count"]))))))
