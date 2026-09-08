@@ -8,7 +8,7 @@
     G7 — server-held-key is false (the member signs, the server never does);
     G8 — the status is dry-run (a 'published' request REFUSES — live needs Council Lv6+ + operator).
   Self-contained."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def disclaimer "【観測ミラー / accountability map — non-adjudicating】")
 

@@ -15,7 +15,7 @@
   Python __main__ demo.
 
   Stdlib only."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [keizu.methods.registry :as registry]
             [keizu.methods.weave :as w]))
 

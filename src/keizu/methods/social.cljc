@@ -19,7 +19,7 @@
   The Python __main__ demo is omitted (analyze.cljc -main drives the dry-run posts end-to-end).
 
   Stdlib only. Deterministic."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]))
 
 (def DISCLAIMER

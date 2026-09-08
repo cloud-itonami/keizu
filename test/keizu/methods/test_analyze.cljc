@@ -4,7 +4,7 @@
   Since the Clojure `run` is pure over a parsed graph (I/O at the #?(:clj) -main edge), the report
   is exercised via `report-md` / `render-json` rather than a temp-dir write — same bytes."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as e])
             [keizu.methods.analyze :as a]))
@@ -117,7 +117,7 @@
 #?(:clj
    (deftest test-report-carries-no-verdict-language
      (let [{:keys [report]} (run-seed)
-           low (str/lower-case report)]
+           low (str/lower report)]
        (doseq [tok ["corruption" "bribe" "guilty" "illegal" "汚職" "賄賂"]]
          (is (not (str/includes? low tok)) (str "verdict token " tok " leaked into the report")))
        (is (seq w/VERDICT-TOKENS)))))  ;; the closed list exists and is the single source

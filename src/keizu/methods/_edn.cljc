@@ -4,7 +4,7 @@
    Keeps keywords as \":kw\" strings. Stdlib only. Used by weave/social/analyze/ingest
    to read the ontology + lexicons + seed without a dependency, mirroring the other actors'
    parsers for parity."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── tokenisation ─────────────────────────────────────────────────────────────
 (def ^:private token-re

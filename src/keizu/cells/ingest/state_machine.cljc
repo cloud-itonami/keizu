@@ -11,7 +11,7 @@
 
   Conventions: dataclass IngestState -> a plain map with the SAME string field keys the Python
   cs.__dict__ round-trips; phase enum value identities stay strings."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def node-scopes #{"public-office" "public-org" "public-committee" "public-role"})
 (def rel-kinds #{"committee-membership" "appointment" "advisory-role" "co-membership"
@@ -44,7 +44,7 @@
       (str/replace #"^:+" "")
       (str/split #"/")
       last
-      str/lower-case))
+      str/lower))
 
 (defn transition-to-screened [state]
   (let [cs0 (cell-state state)

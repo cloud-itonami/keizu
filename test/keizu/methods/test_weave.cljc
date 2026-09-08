@@ -3,7 +3,7 @@
   1:1 Clojure port of `methods/test_weave.py` (clojure.test). Every Python assertion ported,
   plus a byte/numeric-parity check on the seed concentration output."
   (:require [clojure.test :refer [deftest is testing run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.set]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as e])))
@@ -273,7 +273,7 @@
            topics (set (map #(get % "topic") (get si "by_topic")))]
        (is (= 3 (get si "count")))
        (is (contains? speakers "jp-fsc-chair"))
-       (is (some #(str/includes? (str/lower-case %) "fiscal") topics)))))
+       (is (some #(str/includes? (str/lower %) "fiscal") topics)))))
 
 (deftest test-statement-index-empty-safe
   (let [si (get (w/concentration (w/weave {})) "statement_index")]

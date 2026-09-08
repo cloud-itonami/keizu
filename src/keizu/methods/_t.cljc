@@ -4,7 +4,7 @@
    Each test file builds a list of [name fn] and calls run name cases. A case passes if it
    returns without raising; failures print and the process exits non-zero. Mirrors the
    ake/noroshi convention so `run_tests.clj` can aggregate every suite."
-  (:require [clojure.stacktrace :as st]))
+  (:require [kotoba.lang.text] [clojure.stacktrace :as st]))
 
 (defn run
   "Run a suite of [name test-fn] cases. Prints summary and calls System/exit 1 on failure."
@@ -33,5 +33,5 @@
      (fn)
      (throw (ex-info "expected an exception, none raised" {}))
      (catch Exception e
-       (when (and (seq contains) (not (clojure.string/includes? (ex-message e) contains)))
+       (when (and (seq contains) (not (kotoba.lang.text/includes? (ex-message e) contains)))
          (throw (ex-info (str "raised but missing " (pr-str contains) ": " (ex-message e)) {})))))))

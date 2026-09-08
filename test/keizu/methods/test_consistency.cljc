@@ -2,7 +2,7 @@
   "test_consistency.py — 系図 (keizu) SSoT drift-lock. ADR-2606066000.
   1:1 Clojure port (stdlib unittest → clojure.test)."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])
             #?(:clj [clojure.edn :as cedn])
             [keizu.methods._edn :as edn]))

@@ -13,7 +13,7 @@
 
   Requires the merged keizu weave ns for `kw*` (the Python `from weave import _kw`). House style:
   closed-vocab / gate violations throw ex-info; pure fns; file I/O at the #?(:clj) edge."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as kedn])))
 

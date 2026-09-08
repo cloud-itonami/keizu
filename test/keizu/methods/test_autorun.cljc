@@ -14,7 +14,7 @@
 
   Temp logs + file I/O live behind #?(:clj …); SEED/LOG defaults supplied by autorun."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [keizu.methods.autorun :as autorun]
             [keizu.methods.kotoba :as kotoba]
             [keizu.methods.weave :as w]))
@@ -112,7 +112,7 @@
              (is (contains? flagged-ents e)
                  (str e " carries :keizu.conc/non-adjudicating true (G4)")))
            ;; no verdict/allegation attr anywhere
-           (let [attrs (set (map (fn [d] (str/lower-case (str (nth d 2)))) datoms))]
+           (let [attrs (set (map (fn [d] (str/lower (str (nth d 2)))) datoms))]
              (doseq [tok ["verdict" "guilt" "corrupt" "bribe" "illegal" "wrongdoing" "allegation"]]
                (is (not (some #(str/includes? % tok) attrs))
                    (str "no verdict token `" tok "` in any attr (G4)")))))
@@ -126,7 +126,7 @@
        (try
          (autorun/run-cycle 1 autorun/SEED log)
          (let [datoms (get (first (kotoba/read-log log)) ":tx/datoms")
-               attrs (set (map (fn [d] (str/lower-case (str (nth d 2)))) datoms))]
+               attrs (set (map (fn [d] (str/lower (str (nth d 2)))) datoms))]
            (doseq [pii w/PII-FORBIDDEN-NODE-ATTRS]
              (is (not (some #(str/includes? (last (str/split % #"/")) pii) attrs))
                  (str "no PII attr containing `" pii "` in the log (G1 no-doxxing)")))

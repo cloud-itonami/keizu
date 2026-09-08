@@ -6,7 +6,7 @@
   unverified-seed safety state (G8), and the no-commercial-gov-intel deny-list (Charter Rider §2(e),
   N5) — the structural gate keizu inherits from danjo G8."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])
             [keizu.methods.registry :as registry]
             [keizu.methods.weave :as w]))
@@ -58,7 +58,7 @@
 
 (deftest test-no-commercial-gov-intel-terminal
   ;; Charter Rider §2(e) / N5 — the deny-list must not appear in any source's url/title/authority
-  (let [blob (str/lower-case (slurp reg-file))
+  (let [blob (str/lower (slurp reg-file))
         hits (filter #(str/includes? blob %) DENY)]
     (is (empty? hits) (str "prohibited commercial gov-intel terminal in registry: " (vec hits)))))
 

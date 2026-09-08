@@ -19,7 +19,7 @@
   House style: Python ':…' keyword strings stay strings; canonical JSON via the kotoba sibling's
   reader; the kotoba/weave/edn siblings supply the log + metrics; file I/O at the #?(:clj) edge.
   Omits the Python __main__ CLI (the test suite + a -main analogue cover it)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             #?(:clj [keizu.methods.edn :as kedn])
             [keizu.methods.weave :as w]
             [keizu.methods.kotoba :as k]))

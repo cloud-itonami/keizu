@@ -7,7 +7,7 @@
   as their \":ns/name\" STRINGS (not Clojure keywords), so the offline analyzer keys
   on identical shapes whichever runtime reads the seed."
   (:require [clojure.test :refer [deftest is testing]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [keizu.methods.edn :as edn]))
 
 ;; ── fixture: locate keizu's committed seed relative to this test file ─────────
