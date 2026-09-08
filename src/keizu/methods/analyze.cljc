@@ -23,7 +23,7 @@
 
   House style: Python ':…' keyword strings stay strings; pure fns; file I/O only at the #?(:clj)
   edge. Byte-parity: `-main` writes the SAME bytes analyze.py writes to out/intel-report.md."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [keizu.methods.edn :as kedn]
             [keizu.methods.weave :as w]))
 

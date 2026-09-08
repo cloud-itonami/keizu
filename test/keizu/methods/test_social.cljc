@@ -3,7 +3,7 @@
   1:1 Clojure port (stdlib _t harness → clojure.test). String-keyed post records;
   ':ns/name' keyword strings stay strings; assertRaises → (is (thrown? ...))."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [keizu.methods.social :as social]))
 
 (def ^:private FINDING

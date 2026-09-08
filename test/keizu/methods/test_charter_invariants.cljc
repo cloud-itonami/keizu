@@ -11,7 +11,7 @@
   strings), while lexicon map keys are also ':…' strings ([\":defs\"][\":main\"][\":record\"]…).
   All file I/O is behind #?(:clj …)."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.set :as set]
             #?(:clj [keizu.methods.edn :as kedn])
             [keizu.methods.weave :as w]))
@@ -142,7 +142,7 @@
          (doseq [n (get seed ":nodes")]
            (doseq [key (keys n)]
              (is (not (contains? w/PII-FORBIDDEN-NODE-ATTRS
-                                 (str/lower-case (last (str/split (lstrip-colon key) #"/"))))) key)))))
+                                 (str/lower (last (str/split (lstrip-colon key) #"/"))))) key)))))
      :cljs (is true)))
 
 (deftest test-seed-rels-two-sources-and-factual

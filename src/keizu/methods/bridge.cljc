@@ -13,7 +13,7 @@
 
   House style: Python ':…' keyword strings stay strings (incl. all :*/* attrs); validation /
   closed-vocab / gate violations throw ex-info; pure fns; file I/O only at the #?(:clj) edge."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]))
 
 ;; `_kw` is private (`kw*`) in weave.cljc — reach it via the var (Python `from weave import _kw`).

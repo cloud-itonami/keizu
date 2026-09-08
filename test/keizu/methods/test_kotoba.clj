@@ -7,7 +7,7 @@
 (ns keizu.methods.test-kotoba
   (:require [clojure.test :refer [deftest is testing run-tests]]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [keizu.methods.edn :as e]
             [keizu.methods.weave :as w]
             [keizu.methods.kotoba :as kotoba]))

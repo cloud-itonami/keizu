@@ -24,7 +24,7 @@
   House style: Python ':…' keyword strings stay strings; round HALF_EVEN via weave/pyround; canonical
   JSON (sha256 preimage) mirrors json.dumps(sort_keys=True, separators=(',', ':')); the shared
   keizu.methods.edn reader reads the log back; file I/O at the #?(:clj) edge. Omits the __main__ demo."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as kedn])))
 

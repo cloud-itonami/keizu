@@ -9,7 +9,7 @@
             [keizu.cells.money-graph.state-machine :as money]
             [keizu.cells.relation-weave.state-machine :as weave]
             [keizu.cells.social-post.state-machine :as social]
-            [clojure.string :as str]))
+            [kotoba.lang.text :as str]))
 
 ;; ── ingest ───────────────────────────────────────────────────────────────────────
 (deftest test-ingest-clean-batch-records

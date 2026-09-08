@@ -29,7 +29,7 @@
   result is sorted, never CPython-set-order-dependent, so plain ::order insertion-tracking
   suffices (no siphash13/setobject port needed). The ::order metadata + stable sort-by ties
   the Python dict iteration order byte-for-byte for the `shares` rankings."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [clojure.set]
             #?(:clj [keizu.methods.edn :as kedn])))
 
@@ -56,7 +56,7 @@
 (defn source-denied
   "Return the first prohibited commercial gov-intel term found in any source, or '' if clean."
   [sources]
-  (let [blob (str/lower-case (str/join " " (map str (or sources []))))]
+  (let [blob (str/lower (str/join " " (map str (or sources []))))]
     (or (some (fn [d] (when (str/includes? blob d) d)) SOURCE-DENY) "")))
 
 ;; G9 / G1 no-doxxing — a node is a PUBLIC seat/organ, so a personal-contact or sensitive-PII
@@ -76,7 +76,7 @@
   "Normalize an edn keyword/string to a bare lowercase token (':rel/kind' → 'kind')."
   [v]
   (let [s (-> (str (or v "")) (str/replace #"^:+" ""))]
-    (-> (last (str/split s #"/" -1)) (str/lower-case))))
+    (-> (last (str/split s #"/" -1)) (str/lower))))
 
 (defn- err [msg] (throw (ex-info msg {})))
 

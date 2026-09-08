@@ -2,7 +2,7 @@
   "test_bridge.py — 系図 (keizu) cross-actor compose (danjo + kanae). ADR-2606066000.
   1:1 Clojure port (stdlib _t harness → clojure.test). String-keyed maps; ':ns/name'
   keyword strings stay strings; assertRaises → (is (thrown? ...))."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is run-tests]]
             [keizu.methods.bridge :as bridge]
             [keizu.methods.weave :as w]))
 
@@ -20,7 +20,7 @@
     (is (= ":budget-outlay" (get m ":money/kind")))
     (is (= "jp-mof" (get m ":money/payer")))
     (is (= "jp-meti" (get m ":money/payee")))
-    (is (clojure.string/starts-with? (get m ":money/id") "kanae:"))))
+    (is (kotoba.lang.text/starts-with? (get m ":money/id") "kanae:"))))
 
 (deftest test-kanae-unknown-flowtype-refused
   (let [bad (assoc KANAE-OK "flowType" "mystery")]
@@ -36,7 +36,7 @@
   (let [r (bridge/bridge-danjo-crossref DANJO-OK)]
     (is (= ":co-membership" (get r ":rel/kind")))
     (is (true? (get r ":rel/non-adjudicating-notice")))
-    (is (clojure.string/starts-with? (get r ":rel/id") "danjo:"))))
+    (is (kotoba.lang.text/starts-with? (get r ":rel/id") "danjo:"))))
 
 (deftest test-danjo-verdict-category-refused-at-import
   (let [bad (assoc DANJO-OK "linkType" "corruption")]

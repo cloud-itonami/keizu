@@ -16,7 +16,7 @@
             [keizu.cells.money-graph.state-machine :as money]
             [keizu.cells.relation-weave.state-machine :as weave]
             [keizu.cells.social-post.state-machine :as social]
-            [clojure.string :as str]))
+            [kotoba.lang.text :as str]))
 
 ;; one self-contained batch (public seats/organs, >=2-sourced factual ties + flows)
 (def nodes [{"id" "s1" "scope" ":public-role" "organ" "MOF"}
