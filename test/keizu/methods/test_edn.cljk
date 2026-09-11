@@ -11,7 +11,7 @@
             [keizu.methods.edn :as edn]))
 
 ;; ── fixture: locate keizu's committed seed relative to this test file ─────────
-;; bb runs with cwd at the worktree root; the seed lives at a fixed actor path.
+;; kbb -M:runs with cwd at the worktree root; the seed lives at a fixed actor path.
 
 (def seed-path
   "data/seed-relation-graph.kotoba.edn")

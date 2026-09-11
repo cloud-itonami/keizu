@@ -14,7 +14,7 @@
 
 ## Test
 
-    bb run_tests.cljk
-    clojure -M:test
+    kbb run_tests.cljk
+    kbb -M:test
 
 Deployment entry is `src/keizu/mesh.cljk` and is declared by `kotoba.app.edn`.
