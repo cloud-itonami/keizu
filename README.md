@@ -12,4 +12,4 @@ Canonical repository data and contracts are EDN:
 - `data/seed-relation-graph.kotoba.edn`
 
 Source lives under `src/keizu`; tests live under `test/keizu`.
-Run the complete portable suite with `bb run_tests.cljk`.
+Run the complete portable suite with `kbb run_tests.cljk`.
