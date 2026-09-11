@@ -17,13 +17,13 @@ ingestion runs against an unverified source** (G8: Council Lv6+ + operator).
    PROHIBITED as sources (anti-gatekeeping — read the public record, never the paywalled
    compilation): **GovWin IQ, Bloomberg Government, Politico Pro, E&E News Pro, FiscalNote,
    CQ Roll Call Pro, 会社四季報, Bloomberg Terminal, Capital IQ, Refinitiv, FactSet, PitchBook,
-   Crunchbase, LexisNexis, Westlaw.** `test/keizu/methods/test_sources.cljc` enforces this deny-list.
+   Crunchbase, LexisNexis, Westlaw.** `test/keizu/methods/test_sources.cljk` enforces this deny-list.
 4. **Public-power scope only (G1, no-doxxing).** A source's rosters yield **public seats/organs**,
    never private individuals; any incidentally-sensitive personal datum is dropped at ingest
    (`validate_node` PII guard) and never stored on-graph (ADR-2605181100).
 5. **Non-adjudicating (G2).** A source is read for facts and ties; keizu never imports a
    characterization of wrongdoing. A source field that reads like a verdict is mapped to a
-   factual keizu kind or refused at the import boundary (`src/keizu/methods/bridge.cljc`).
+   factual keizu kind or refused at the import boundary (`src/keizu/methods/bridge.cljk`).
 6. **Sourcing-honesty (G11).** Until verified, derived datoms are `:representative`; only a
    verified source promotes its datoms to `:authoritative`.
 7. **Freshness (G8).** `freshnessWindowDays = 180`. A source past its window is re-verified
