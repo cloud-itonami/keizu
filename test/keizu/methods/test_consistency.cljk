@@ -4,7 +4,7 @@
   (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])
-            #?(:clj [clojure.edn :as cedn])
+            #?(:clj [kotoba.lang.edn :as cedn])
             [keizu.methods._edn :as edn]))
 
 (def ^:private ont-path
