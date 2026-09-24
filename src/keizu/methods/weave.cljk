@@ -30,7 +30,7 @@
   suffices (no siphash13/setobject port needed). The ::order metadata + stable sort-by ties
   the Python dict iteration order byte-for-byte for the `shares` rankings."
   (:require [kotoba.lang.text :as str]
-            [clojure.set]
+            [kotoba.lang.coll]
             #?(:clj [keizu.methods.edn :as kedn])))
 
 ;; ── closed vocab (mirror of the ontology :db/allowed) ───────────────────────────
@@ -375,7 +375,7 @@
                                     #(conj % [(get m ":money/payee") amt]) [])
                        don)]))
                 [(ordered-map) (ordered-map)] (get g "money"))
-        nodes (vec (sort (clojure.set/intersection (set (keys received)) (set (keys donated)))))]
+        nodes (vec (sort (kotoba.lang.coll/intersection (set (keys received)) (set (keys donated)))))]
     (mapv (fn [node]
             (omap "node" node
                   "received_from" (vec (sort (set (map first (get received node)))))
@@ -391,7 +391,7 @@
   (let [nodes (set (keys (get g "nodes")))
         committees (set (keys (get g "committees")))
         statements (set (map #(get % ":statement/id") (get g "statements")))
-        rel-space (clojure.set/union nodes committees statements)
+        rel-space (kotoba.lang.coll/union nodes committees statements)
         dangling (transient [])
         chk (fn [ref space kind owner field]
               (when (and ref (not (contains? space ref)))

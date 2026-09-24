@@ -12,7 +12,7 @@
   All file I/O is behind #?(:clj …)."
   (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
-            [clojure.set :as set]
+            [kotoba.lang.coll :as set]
             #?(:clj [keizu.methods.edn :as kedn])
             [keizu.methods.weave :as w]))
 

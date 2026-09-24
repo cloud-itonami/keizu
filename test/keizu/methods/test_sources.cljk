@@ -7,7 +7,7 @@
   N5) — the structural gate keizu inherits from danjo G8."
   (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
-            #?(:clj [clojure.java.io :as io])
+            #?(:clj [kotoba.io :as io])
             [keizu.methods.registry :as registry]
             [keizu.methods.weave :as w]))
 

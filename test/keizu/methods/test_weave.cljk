@@ -4,7 +4,7 @@
   plus a byte/numeric-parity check on the seed concentration output."
   (:require [kotoba.test :refer [deftest is testing run-tests]]
             [kotoba.lang.text :as str]
-            [clojure.set]
+            [kotoba.lang.coll]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as e])))
 
@@ -283,7 +283,7 @@
 #?(:clj
    (deftest test-by-jurisdiction-covers-global-seed
      (let [bj (into {} (map (fn [j] [(get j "jurisdiction") j]) (w/by-jurisdiction (g))))]
-       (is (clojure.set/subset? #{"jp" "us" "eu" "oecd"} (set (keys bj))))
+       (is (kotoba.lang.coll/subset? #{"jp" "us" "eu" "oecd"} (set (keys bj))))
        (is (and (>= (get-in bj ["jp" "nodes"]) 1) (>= (get-in bj ["jp" "committees"]) 1)))
        ;; jp-meti disburses the JP procurement/subsidy flows → jp money_total is the largest
        (is (= (get-in bj ["jp" "money_total"])
