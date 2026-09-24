@@ -2,7 +2,7 @@
   "test_social.py — 系図 (keizu) dry-run social-post invariants. ADR-2606066000.
   1:1 Clojure port (stdlib _t harness → clojure.test). String-keyed post records;
   ':ns/name' keyword strings stay strings; assertRaises → (is (thrown? ...))."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [keizu.methods.social :as social]))
 

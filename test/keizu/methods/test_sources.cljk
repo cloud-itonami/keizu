@@ -5,7 +5,7 @@
   Validates registry/sources.seed.edn: required fields, valid kinds + mapsTo targets, the
   unverified-seed safety state (G8), and the no-commercial-gov-intel deny-list (Charter Rider §2(e),
   N5) — the structural gate keizu inherits from danjo G8."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])
             [keizu.methods.registry :as registry]

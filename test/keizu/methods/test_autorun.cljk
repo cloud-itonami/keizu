@@ -13,7 +13,7 @@
    - NO external I/O.
 
   Temp logs + file I/O live behind #?(:clj …); SEED/LOG defaults supplied by autorun."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [keizu.methods.autorun :as autorun]
             [keizu.methods.kotoba :as kotoba]

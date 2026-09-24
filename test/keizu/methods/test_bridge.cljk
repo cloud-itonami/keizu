@@ -2,7 +2,7 @@
   "test_bridge.py — 系図 (keizu) cross-actor compose (danjo + kanae). ADR-2606066000.
   1:1 Clojure port (stdlib _t harness → clojure.test). String-keyed maps; ':ns/name'
   keyword strings stay strings; assertRaises → (is (thrown? ...))."
-  (:require [kotoba.lang.text] [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.text] [kotoba.test :refer [deftest is run-tests]]
             [keizu.methods.bridge :as bridge]
             [keizu.methods.weave :as w]))
 

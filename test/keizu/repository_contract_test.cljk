@@ -1,7 +1,7 @@
 (ns keizu.repository-contract-test
   (:require [clojure.edn :as edn]
             [clojure.java.io :as io]
-            [clojure.test :refer [deftest is testing]]))
+            [kotoba.test :refer [deftest is testing]]))
 
 (def canonical-edn
   ["manifest.edn" "identity.edn" "dependencies.edn" "repository-contracts.edn"

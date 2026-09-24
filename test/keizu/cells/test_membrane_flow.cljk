@@ -10,7 +10,7 @@
 
   One public-source batch is threaded through all five cell state machines in sequence; the finding
   that falls out of relation_weave becomes social_post's subject. .solve() is never called (R0)."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [keizu.cells.ingest.state-machine :as ingest]
             [keizu.cells.committee-graph.state-machine :as committee]
             [keizu.cells.money-graph.state-machine :as money]

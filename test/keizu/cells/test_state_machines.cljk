@@ -3,7 +3,7 @@
   1:1 port of cells/test_state_machines.py. The .solve()-raises test imported cell.py and is
   dropped (cell.py pruned in the py->clj wave); each cell's .solve() raise stays guarded by the
   RuntimeError contract in the Python ADR record."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [keizu.cells.ingest.state-machine :as ingest]
             [keizu.cells.committee-graph.state-machine :as committee]
             [keizu.cells.money-graph.state-machine :as money]
