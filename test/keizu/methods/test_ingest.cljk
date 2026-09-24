@@ -2,7 +2,7 @@
   "test_ingest.py — 系図 (keizu) offline normalizer + G8 live refusal. ADR-2606066000.
   1:1 Clojure port (stdlib _t harness → clojure.test). The Python os.environ mutation for the
   with-gate path is expressed by binding the `*allow-live*` dynamic var."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [keizu.methods.ingest :as ingest]))
 
 (deftest test-normalize-node-public-seat

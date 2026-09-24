@@ -6,7 +6,7 @@
   pins the fidelity invariant the Python `load_edn` guarantees: keywords come back
   as their \":ns/name\" STRINGS (not Clojure keywords), so the offline analyzer keys
   on identical shapes whichever runtime reads the seed."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [kotoba.lang.text :as str]
             [keizu.methods.edn :as edn]))
 

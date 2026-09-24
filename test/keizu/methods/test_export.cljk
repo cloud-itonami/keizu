@@ -3,7 +3,7 @@
   1:1 Clojure port of `methods/test_export.py` (clojure.test). Every Python assertion ported,
   EXCEPT test_round_trip_through_bridge_preserves_kind — bridge.cljc is not yet ported, so that
   bridge-dependent test is DEFERRED (see report). Seed I/O is at the #?(:clj) edge."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [keizu.methods.weave :as w]
             [keizu.methods.export :as x]
             #?(:clj [keizu.methods.edn :as e])

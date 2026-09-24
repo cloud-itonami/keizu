@@ -1,5 +1,5 @@
 (babashka.classpath/add-classpath "src:test")
-(require '[clojure.test :as t])
+(require '[kotoba.test :as t])
 
 (def suites
   '[keizu.cells.test-membrane-flow

@@ -10,7 +10,7 @@
   come back as ':public-office' etc. (stripped of the leading ':' to compare to lexicon enum
   strings), while lexicon map keys are also ':…' strings ([\":defs\"][\":main\"][\":record\"]…).
   All file I/O is behind #?(:clj …)."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [clojure.set :as set]
             #?(:clj [keizu.methods.edn :as kedn])

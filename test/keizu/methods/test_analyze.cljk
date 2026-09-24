@@ -3,7 +3,7 @@
   1:1 Clojure port of `methods/test_analyze.py` (clojure.test). Every Python assertion ported.
   Since the Clojure `run` is pure over a parsed graph (I/O at the #?(:clj) -main edge), the report
   is exercised via `report-md` / `render-json` rather than a temp-dir write — same bytes."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as e])
