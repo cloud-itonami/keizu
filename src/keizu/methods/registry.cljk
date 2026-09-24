@@ -14,7 +14,7 @@
   throw ex-info (mirroring Python's KeyError / ValueError); pure fns; file I/O at the #?(:clj)
   edge (the JSON read)."
   (:require [keizu.methods.weave :as w]
-            #?(:clj [clojure.edn :as edn])))
+            #?(:clj [kotoba.lang.edn :as edn])))
 
 ;; Re-export SOURCE-DENY (Python `from weave import SOURCE_DENY` → registry's __all__).
 (def SOURCE-DENY w/SOURCE-DENY)
