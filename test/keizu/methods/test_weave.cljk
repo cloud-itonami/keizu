@@ -15,7 +15,7 @@
 ;; expect_raises(fn, contains=…) → assert an ex-info whose message contains `frag`.
 (defn- raises? [f frag]
   (try (f) false
-       (catch #?(:clj clojure.lang.ExceptionInfo :cljs :default) ex
+       (catch :default ex
          (str/includes? (#?(:clj #(.getMessage %) :cljs ex-message) ex) frag))
        (catch #?(:clj Exception :cljs js/Error) ex
          (str/includes? (str (#?(:clj #(.getMessage %) :cljs ex-message) ex)) frag))))

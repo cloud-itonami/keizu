@@ -13,7 +13,7 @@
 
   Requires the merged keizu weave ns for `kw*` (the Python `from weave import _kw`). House style:
   closed-vocab / gate violations throw ex-info; pure fns; file I/O at the #?(:clj) edge."
-  (:require [kotoba.lang.text :as str]
+  (:require [kotoba.bytes :as kbytes] [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as kedn])))
 
@@ -141,5 +141,5 @@
                        (get f "donor") " → " (get f "recipient") "  "
                        (format "%.0f" (get f "amount")) " " (get f "currency"))))
        (println (str "  render payload JSON bytes: "
-                     (count (.getBytes ^String (render-json (w/concentration g)) "UTF-8"))))
+                     (count (kbytes/utf8-bytes ^String (render-json (w/concentration g))))))
        0)))

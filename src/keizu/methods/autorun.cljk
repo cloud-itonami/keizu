@@ -19,15 +19,15 @@
   House style: Python ':…' keyword strings stay strings; canonical JSON via the kotoba sibling's
   reader; the kotoba/weave/edn siblings supply the log + metrics; file I/O at the #?(:clj) edge.
   Omits the Python __main__ CLI (the test suite + a -main analogue cover it)."
-  (:require [kotoba.lang.text :as str]
+  (:require [kotoba.io :as kio] [kotoba.lang.text :as str]
             #?(:clj [keizu.methods.edn :as kedn])
             [keizu.methods.weave :as w]
             [keizu.methods.kotoba :as k]))
 
 #?(:clj
-   (def SEED (java.io.File. "data/seed-relation-graph.kotoba.edn")))
+   (def SEED (kio/file "data/seed-relation-graph.kotoba.edn")))
 #?(:clj
-   (def LOG (java.io.File. "data/keizu.datoms.kotoba.edn")))
+   (def LOG (kio/file "data/keizu.datoms.kotoba.edn")))
 
 (def BASE-AS-OF 20260609)
 
