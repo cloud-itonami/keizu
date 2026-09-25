@@ -24,7 +24,7 @@
   House style: Python ':…' keyword strings stay strings; round HALF_EVEN via weave/pyround; canonical
   JSON (sha256 preimage) mirrors json.dumps(sort_keys=True, separators=(',', ':')); the shared
   keizu.methods.edn reader reads the log back; file I/O at the #?(:clj) edge. Omits the __main__ demo."
-  (:require [kotoba.lang.text :as str]
+  (:require [kotoba.bytes :as kbytes] [kotoba.io :as kio] [kotoba.lang.text :as str]
             [keizu.methods.weave :as w]
             #?(:clj [keizu.methods.edn :as kedn])))
 
@@ -32,7 +32,7 @@
 
 ;; ── sha-256 (self-contained; no sibling provides one) ──────────────────────────
 (defn- sha256-hex ^String [^String s]
-  #?(:clj (let [d (.digest (java.security.MessageDigest/getInstance "SHA-256") (.getBytes s "UTF-8"))]
+  #?(:clj (let [d (.digest (java.security.MessageDigest/getInstance "SHA-256") (kbytes/utf8-bytes s))]
             (apply str (map #(format "%02x" (bit-and % 0xff)) d)))
      :default (throw (ex-info "bind a sha-256 impl on this host" {}))))
 
@@ -213,9 +213,9 @@
    (defn append-tx
      "Append ONE transaction to the append-only log (never rewrites). Returns the tx CID."
      [tx log-path]
-     (let [f (java.io.File. (str log-path))]
-       (when-let [parent (.getParentFile f)] (.mkdirs parent))
-       (when-not (.exists f)
+     (let [f (kio/file (str log-path))]
+       (when-let [parent (kio/parent-file f)] (kio/mkdirs parent))
+       (when-not (kio/exists? f)
          (spit f LOG-HEADER))
        (spit f (str (tx-to-edn tx) "\n") :append true)
        (get tx ":tx/cid"))))
@@ -224,8 +224,8 @@
    (defn read-log
      "Read the log back as a list of transaction maps (uses the shared keizu.methods.edn reader)."
      [log-path]
-     (let [f (java.io.File. (str log-path))]
-       (if-not (.exists f)
+     (let [f (kio/file (str log-path))]
+       (if-not (kio/exists? f)
          []
          (->> (str/split-lines (slurp f))
               (map str/trim)
